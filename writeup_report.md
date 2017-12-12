@@ -78,11 +78,11 @@ While the HOG features of a non-car image follows:
 
 ![alt text][image3]
 
-A data scaler is used for the features data. It is found in the eigth block of code as `X_scaler`. This transforms the data columnwise to be mean zero and unit variance. The image data is subject to a train test split of .80/.20 percent.  In the ninth block of code, a Support Vector machine with linear kernel is estimated on the training data.  The test accuracy is rather high at .9893.  I also estimate an ensemble of decision trees and get a test accuracy of .9797.  This is also rather good but I went with the linearSVC classifier in this project.
+A data scaler is used for the features data. It is found in the eighth block of code as `X_scaler`. This transforms the data columnwise to be mean zero and unit variance. The image data is subject to a train test split of 80/20 percent.  In the ninth block of code, a Support Vector machine with linear kernel is estimated on the training data.  The test accuracy is rather high at .9893.  I also estimate an ensemble of decision trees and get a test accuracy of .9797.  This is also rather good but I went with the linearSVC classifier in this project.
 
 ### Sliding Window Search ###
 
-The basic principle of the sliding windows search is to use multiple scales of overlapping windows to detect vehicles on the road.  As the camera is front-facing on our car.  We are not likely to detect vehicles in the top half of the image.  Cars far from our car will by perspective look small and be clustered in a tight band around the middle of the image.
+The basic principle of the sliding windows search is to use multiple scales of overlapping windows to detect vehicles on the road.  As the camera is front-facing on our car.  We are not likely to detect vehicles in the top half of the image.  Cars that are far from our car will by perspective look small and be clustered in a tight band around the middle of the image.
 
 We can see an example of the finest scale grid in the image below:
 
@@ -98,9 +98,12 @@ Overlapping larger grids lower in the image should detect vehicles that are clos
 
 ### Single Image Performance ###
 
-First we test the small grids on the test images:
+First we test the small grids on the test images.
 
+Test5
 ![alt text][image8]
+
+Test3
 ![alt text][image9]
 
 We can see multiple overlapping detections on the cars along with a few false positives.
@@ -108,9 +111,13 @@ We can see multiple overlapping detections on the cars along with a few false po
 Next lets test out larger grids on some test images:
 
 ![alt text][image10]
+
 ![alt text][image11]
+
 ![alt text][image12]
+
 ![alt text][image13]
+
 ![alt text][image14]
 
 We can see that the detector appears to work alright.  We will need a method to deal with false positives and the multiple overlapping detections on the cars.
