@@ -96,6 +96,33 @@ Examples of larger grids are given below:
 
 Overlapping larger grids lower in the image should detect vehicles that are closer to the car.
 
+### Single Image Performance ###
+
+First we test the small grids on the test images:
+
+![alt text][image8]
+![alt text][image9]
+
+We can see multiple overlapping detections on the cars along with a few false positives.
+
+Next lets test out larger grids on some test images:
+
+![alt text][image10]
+![alt text][image11]
+![alt text][image12]
+![alt text][image13]
+![alt text][image14]
+
+We can see that the detector appears to work alright.  We will need a method to deal with false positives and the multiple overlapping detections on the cars.
+
+I deal with these issues with the heatmap device as implemented in lecture.  A minimum threshold parameter is used to help screen out false positives that only trigger a small number of grids.  The heatmap collects the positive grid detections and an overall maximum bounding box is estimated and displayed on the actual image.  This code is in `apply_threshold` and `draw_labeled_bboxes` in the code block labelled `Heatmap`.  A threshold paramenter of 3 is used and run on all test images in the following image.
+
+![alt text][image15]
+
+
+
+
+
 
 
 ---
