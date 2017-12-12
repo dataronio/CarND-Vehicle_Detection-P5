@@ -119,17 +119,18 @@ I deal with these issues with the heatmap device as implemented in lecture.  A m
 
 ![alt text][image15]
 
+The white car in test image 3 is not detected.  Most of the other frames do a decent job of detected the two main cars in the images.  There are no false positives detected in the test images.
 
+### Video Pipeline Implementation ###
 
-
-
+I define a class `Video` which maintains a frame count.  It also maintains a set of past heatmaps.  I implement averaging over the last two heatmaps in order to stabilize the image.  I only process every three frames and I am able to run the videos on my laptop at around 4 frames per second.  This is far from real-time but is much faster than the original naive implementation of extracting HOG features from each grid window separately in the image.
 
 
 ---
 
 ### Pipeline (video) ##
 
-The final video output of the project video overall works but with some obvious issues.  There are intermitant false positives.  The white car is very difficult to detect after measures are taken to suppress false positives.  The black car, however, is very easily detected.  There is constant detection of the black car from the time it enters the frame to the end of the video.  At least there is one strightforward success story from the video.
+The final video output of the project video overall works but with some obvious issues.  There are intermittent false positives.  The white car is very difficult to detect after measures are taken to suppress false positives.  The black car, however, is very easily detected.  There is constant detection of the black car from the time it enters the frame to the end of the video.  There is the only strightforward success story from the video. As with any classifier, the more I suppress false positives the harder it is to detect the true positives.
 
 Here's a [link to my video result](./project_video_output.mp4)
 
@@ -141,4 +142,4 @@ From analyzing the output of the project video, I have identified a number of we
 
 Results show that even using a standard machine learning method such as Linear Support Vector Machines for classification there are serious issues with false positives.  Also, in the project video I was having a extremely difficult time in maintaining detection of the white car.  It is possible that using more training data with highly saturated white colored cars would help, I believe that the difficulties show the weaknesses of the traditional computer vision features with standard machine learning methods.
 
-Just as there has been a revolution in image classification accuracy in the last 5 or so years, there have recently been great strides in various deep learning approaches to object detection.  Deep learning object detectors such as YOLO (You Only Look Once) and SSD (Single Shot Detector) have shown extremely accurate real-time object detection performance.  At best my approach can be run at say 4 to 5 frames per second while the newer deep learning methods can beat its accuracy and also run at true real time speeds of over 20 frames per second.  It does not seem reasonably to disregard such methods for advanced lane detection or vehicle detection.  While it is useful to learn the classical computer vision approaches, I believe a focus on deep learning methods is much needed for these difficult projects.
+Just as there has been a revolution in image classification accuracy in the last 5 or so years, there have recently been great strides in various deep learning approaches to object detection.  Deep learning object detectors such as YOLO (You Only Look Once) and SSD (Single Shot Detector) have shown extremely accurate real-time object detection performance.  At best my approach can be run at say 4 to 5 frames per second while the newer deep learning methods can beat its accuracy and also run at true real time speeds of over 20 frames per second.  It does not seem reasonably to disregard such methods for advanced lane detection or vehicle detection.  While it is useful to learn the classical computer vision approaches, I believe a focus on deep learning methods is greatly needed for these difficult projects.
